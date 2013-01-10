@@ -11,7 +11,7 @@ This archetype will create a multi-modules project with a nested structure :
      |
      |---__artifactId__.test   : eclipse-test-plugin (Fragment project)
      |
-     |---__artifactId__.site : eclipse-repository
+     |---__artifactId__.repository : eclipse-repository
 
 The generated plugin is based on the Hello World template from the PDE Wizard :
 
@@ -65,4 +65,4 @@ You can then build your projects in command line, in a terminal, by issuing :
 
     mvn clean verify
 
-An zipped update site will be created as `<project.parent>/<project.site>/target/<project.site>-<project.version>-site.zip`.
+An zipped update site will be created as `<project.parent>/<project.repository>/target/<project.repository>-<project.version>-site.zip`.
