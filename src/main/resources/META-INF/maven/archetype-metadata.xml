@@ -4,14 +4,15 @@
       <defaultValue>0.16.0</defaultValue>
     </requiredProperty>
     <requiredProperty key="eclipse_platform">
-      <defaultValue>juno</defaultValue>
+      <defaultValue>indigo</defaultValue>
     </requiredProperty>
   </requiredProperties>
   <fileSets>
     <fileSet encoding="UTF-8">
       <directory></directory>
       <includes>
-        <include>Eclipse Application.launch</include>
+        <include>**/*.txt</include>
+        <include>**/*.md</include>
       </includes>
     </fileSet>
   </fileSets>
@@ -78,7 +79,7 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}.site" dir="__rootArtifactId__.site" name="${rootArtifactId}.site">
+    <module id="${rootArtifactId}.repository" dir="__rootArtifactId__.repository" name="${rootArtifactId}.repository">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
           <directory></directory>
