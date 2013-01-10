@@ -1,93 +1,171 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
+#set($symbol_pound = '#')
+#set($symbol_dollar = '$')
+#set($symbol_escape = '\')
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>${groupId}</groupId>
-  <artifactId>${artifactId}</artifactId>
-  <version>${version}</version>
-  <packaging>pom</packaging>
-  <name>${artifactId} :: parent</name>
-  <description>${artifactId} parent</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <prerequisites>
-    <maven>3.0</maven>
-  </prerequisites>
+	<modelVersion>4.0.0</modelVersion>
 
-  <properties>
-    <java.version>1.5</java.version>
-  	<maven.version>3.0</maven.version>
-  	<tycho.version>${tycho_version}</tycho.version>
-  	<tycho.test.jvmArgs>-Xmx512m -XX:MaxPermSize=256m</tycho.test.jvmArgs>
-  </properties>
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>pom</packaging>
 
-  <repositories>
-    <repository>
-      <id>${eclipse_platform}</id>
-      <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/${eclipse_platform}</url>
-    </repository>
-  </repositories>
+	<name>${artifactId} :: parent</name>
+	<description>${artifactId} parent</description>
+	<url></url>
+	<inceptionYear></inceptionYear>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>sonatype-public</id>
-      <url>http://repository.sonatype.org/content/groups/sonatype-public-grid</url>
-    </pluginRepository>
-  </pluginRepositories>
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.6</java.version>
+		<maven.version>3.0</maven.version>
+		<tycho.version>${tycho_version}</tycho.version>
+		<tycho.test.jvmArgs>-Xmx512m -XX:MaxPermSize=256m</tycho.test.jvmArgs>
+	</properties>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-		<artifactId>tycho-maven-plugin</artifactId>
-        <version>${symbol_dollar}{tycho.version}</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <version>${symbol_dollar}{tycho.version}</version>
-        <configuration>
-          <resolver>p2</resolver>
-          <pomDependencies>consider</pomDependencies>
-          <ignoreTychoRepositories>true</ignoreTychoRepositories>
-        </configuration>
-      </plugin>
-    </plugins>
+	<repositories>
+		<repository>
+			<id>${eclipse_platform}</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/${eclipse_platform}</url>
+		</repository>
+	</repositories>
 
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.eclipse.tycho</groupId>
-          <artifactId>tycho-packaging-plugin</artifactId>
-          <version>${symbol_dollar}{tycho.version}</version>
-          <configuration>
-            <format>yyyyMMdd-HHmm</format>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.eclipse.tycho</groupId>
-          <artifactId>tycho-surefire-plugin</artifactId>
-          <version>${symbol_dollar}{tycho.version}</version>
-          <configuration>
-            <useUIHarness>true</useUIHarness>
-            <includes>
-              <include>**/*Test.java</include>
-            </includes>
-            <argLine>${symbol_dollar}{tycho.test.jvmArgs}</argLine>
-            <!-- kill test JVM if tests take more than 1 minute (60 seconds) to finish -->
-            <forkedProcessTimeoutInSeconds>60</forkedProcessTimeoutInSeconds>
-          </configuration>
-        </plugin>
-        <plugin>
-        	<groupId>org.apache.maven.plugins</groupId>
-        	<artifactId>maven-assembly-plugin</artifactId>
-        	<version>2.3</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>  
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-public</id>
+			<url>http://repository.sonatype.org/content/groups/sonatype-public-grid</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>${symbol_dollar}{java.version}</source>
+					<target>${symbol_dollar}{java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${symbol_dollar}{tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${symbol_dollar}{tycho.version}</version>
+				<configuration>
+					<format>yyyyMMddHHmm'-${eclipse_platform}'</format>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${symbol_dollar}{tycho.version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<pomDependencies>consider</pomDependencies>
+					<ignoreTychoRepositories>true</ignoreTychoRepositories>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<inherited>false</inherited>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.9.0</version>
+				<configuration>
+					<basedir>${symbol_dollar}{basedir}</basedir>
+					<header>etc/header.txt</header>
+					<quiet>false</quiet>
+					<failIfMissing>true</failIfMissing>
+					<aggregate>true</aggregate>
+					<strictCheck>true</strictCheck>
+					<includes>
+						<include>**/src/**</include>
+					</includes>
+					<useDefaultExcludes>true</useDefaultExcludes>
+					<mapping>
+						<ecmd>XML_STYLE</ecmd>
+						<mwe>XML_STYLE</mwe>
+						<ext>SLASHSTAR_STYLE</ext>
+						<xpt>XML_STYLE</xpt>
+						<java>SLASHSTAR_STYLE</java>
+						<aj>SLASHSTAR_STYLE</aj>
+						<properties>SCRIPT_STYLE</properties>
+						<xml>XML_STYLE</xml>
+					</mapping>
+					<useDefaultMapping>false</useDefaultMapping>
+					<properties>
+						<year>2012</year>
+					</properties>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-surefire-plugin</artifactId>
+					<version>${symbol_dollar}{tycho.version}</version>
+					<configuration>
+						<useUIHarness>true</useUIHarness>
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+						<argLine>${symbol_dollar}{tycho.test.jvmArgs}</argLine>
+						<!-- kill test JVM if tests take more than 1 minute (60 seconds) to 
+							finish -->
+						<forkedProcessTimeoutInSeconds>60</forkedProcessTimeoutInSeconds>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
